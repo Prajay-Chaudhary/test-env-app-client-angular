@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>A platform where you can test your Web APP for free!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row
+    justify-content-center
+    class="ion-justify-content-center ion-margin-vertical"
+  >
+    <!-- Conditionally display the button based on user roles -->
+    <ion-button
+      size="medium"
+      *ngIf="isSingleMachineUser || isMultipleOSUser"
+      (click)="testOnWindows()"
+      color="success"
+    >
+      Test on Window
+    </ion-button>
+    <!-- Conditionally display the button based on user roles -->
+    <ion-button
+      size="medium"
+      *ngIf="isMultipleOSUser"
+      (click)="testOnLinux()"
+      color="warning"
+    >
+      Test on Linux
+    </ion-button>
+    <!-- Conditionally display the button based on user roles -->
+
+    <!-- Display message if user has no credits -->
+    <div *ngIf="!isSingleMachineUser && !isMultipleOSUser">
+      <p>You have no credits</p>
+    </div>
+  </ion-row>
+</ion-content>

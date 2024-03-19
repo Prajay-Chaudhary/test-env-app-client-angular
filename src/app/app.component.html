@@ -1,3 +1,31 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title> Test your web app on virtual machine for free!</ion-title>
+      <ion-buttons slot="end">
+        <ion-button
+          *ngIf="hasValidAccessToken"
+          (click)="logout()"
+          color="danger"
+          size="medium"
+          >Logout</ion-button
+        >
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-router-outlet *ngIf="hasValidAccessToken"></ion-router-outlet>
+    <div id="container" *ngIf="!hasValidAccessToken" class="center-container">
+      <ion-buttons slot="center">
+        <ion-button
+          *ngIf="!hasValidAccessToken"
+          (click)="login()"
+          color="success"
+          size="medium"
+          >Test now</ion-button
+        >
+      </ion-buttons>
+    </div>
+  </ion-content>
 </ion-app>
